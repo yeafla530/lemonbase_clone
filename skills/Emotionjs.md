@@ -10,7 +10,24 @@
 
 ```
 $ npm i @emotion/react @emotion/styled
+// css props를 위해 설치
+$ npm i @emotion/babel-plugin
 ```
+
+
+
+`.babelrc`
+
+emotion을 사용하고 코드 상단에 /** @jsx jsx */ 사용하지 않아도 되도록 설정
+
+```
+{
+    "presets": ["@babel/preset-env", "@babel/preset-react", "@emotion/babel-preset-css-prop"], 
+    "plugins": ["emotion"]
+}
+```
+
+
 
 
 
@@ -113,6 +130,20 @@ render(
   </div>
 )
 ```
+
+
+
+### 반복되는 스타일 JavaScript 변수로 정의
+
+emotion 공식문서를 확인해보니 색상 및 기타 스타일의 상수를 javaScript변수로 정의하여 사용하라고 되어있다
+
+```
+src
+ ㄴ theme
+ 	  ㄴ theme.js  // 반복되는 스타일 저장
+```
+
+
 
 
 

@@ -1,48 +1,85 @@
 import React from 'react';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import styled from '@emotion/styled'
+/** @jsxImportSource @emotion/react */ 
+import {css} from "@emotion/react"
+import { Card, Col, Row } from 'antd';
 
-const { Header, Content, Footer, Sider } = Layout;
 
-const MyHeader = styled(Header)`
-    background-color: white;
-    display: flex;
 
+const home = css`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
 
-const contentStyle: React.CSSProperties = {
-    textAlign: 'center',
-    minHeight: 120,
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#108ee9',
-};
-
-const siderStyle: React.CSSProperties = {
-    textAlign: 'center',
-    lineHeight: '120px',
-    color: '#fff',
-    backgroundColor: '#3ba0e9',
-};
-
-const MyFooter = styled(Footer)`
-    textAlign: 'center';
-    color: '#fff';
-    backgroundColor: '#7dbcea';
+const flex = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const Home = () => {
+  const {Meta} = Card
+
+  type Card = {
+    image: string;
+    describe: string;
+  };
+
+  const cards:Card[] = [
+    {
+      image: '1.img',
+      describe: 'hello'
+    },
+    {
+      image: '2.img',
+      describe: 'hello'
+    },
+    {
+      image: '3.img',
+      describe: 'hello'
+    },
+    {
+      image: '4.img',
+      describe: 'hello'
+    },
+    {
+      image: '5.img',
+      describe: 'hello'
+    }
+  ]
   return (
-    <Layout>
-        <MyHeader>Header</MyHeader>
-        <Layout hasSider>
-            <Sider style={siderStyle}>Sider</Sider>
-            <Content style={contentStyle}>Sider</Content>
-        </Layout>
-        <MyFooter>Footer</MyFooter>  
-    </Layout>
+    <div css={home}>
+      <div>
+        <h1>Lemonbase Clone</h1>
+      </div>
+      <div css={flex}>
+        <Row gutter={8}>
+          {cards.map((card, idx)=>{
+            return (
+              <Col key={idx}>
+                <Card
+                  style={{ width: 400 }}
+                  cover={
+                    <img
+                      alt="${idx} image"
+                      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    />
+                  }
+                >
+                  <Meta
+                    title={card.image}
+                    description={card.describe}
+                  />
+                </Card>
+              </Col>
+            )
+          })}
+        </Row>
+      </div>
+    </div>  
   );
 };
 
