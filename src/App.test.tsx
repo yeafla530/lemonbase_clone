@@ -2,8 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('lemonbase clone', () => {
   render(<App />);
-  const linkElement = screen.getByText(/lemonbase clone/i);
-  expect(linkElement).toBeInTheDocument();
+  const textElement = screen.getByText(/lemonbase clone/i);
+  expect(textElement).toBeInTheDocument();
 });

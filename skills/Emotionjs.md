@@ -18,7 +18,9 @@ $ npm i @emotion/babel-plugin
 
 `.babelrc`
 
-emotion을 사용하고 코드 상단에 /** @jsx jsx */ 사용하지 않아도 되도록 설정
+`@emotion/react` 사용 시 jsx Pragma인 `/** @jsxImportSource @emotion/react */ ` 사용하지 않아도 되도록 설정
+
+흠.. 그런데 사용해야만 적용가능
 
 ```
 {
@@ -140,7 +142,32 @@ emotion 공식문서를 확인해보니 색상 및 기타 스타일의 상수를
 ```
 src
  ㄴ theme
- 	  ㄴ theme.js  // 반복되는 스타일 저장
+ 	  ㄴ theme.ts  // 반복되는 스타일 저장
+```
+
+
+
+# 에러 해결
+
+### 1. typescript에서 css속성 인식 못함
+
+css에 에러가 뜨고 아래와 같은 에러 문구 확인 
+
+TS2322: Type '{ children: string; css: SerializedStyles; }' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'. Property 'css' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>'.
+
+
+
+#### 해결방법
+
+tsconfig.json 에 아래와 같은 속성 추가
+
+```json
+{
+    "compilerOptions": {
+      "types": ["@emotion/react/types/css-prop"],
+    	...
+    }
+}
 ```
 
 
@@ -158,3 +185,5 @@ src
 * [emotion으로 react 컴포넌트스타일하기](https://www.daleseo.com/emotion/)
 
 * [antd컴포넌트에 emotion 적용하기](https://velog.io/@e_juhee/react-library)
+
+* [emotion 소개 및 사용법](https://yoonocean.tistory.com/12)
